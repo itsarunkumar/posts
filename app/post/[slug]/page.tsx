@@ -5,7 +5,7 @@ import Post from "@/app/components/Post";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
-import { PostType } from "@/app/types/Post";
+import { PostType } from "../../types/Post";
 
 const fetchDetails = async (slug: string) => {
   const { data } = await axios.get(`/api/post/${slug}`);
@@ -13,7 +13,7 @@ const fetchDetails = async (slug: string) => {
 };
 
 export default function PostDetails(url: URL) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQuery<PostType>({
     queryKey: ["detail-post"],
     queryFn: () => fetchDetails(url?.params?.slug),
   });
@@ -21,18 +21,18 @@ export default function PostDetails(url: URL) {
   // console.log(data);
   return (
     <div>
-      <h1>Post by {data.user.name}</h1>
+      <h1>Post by {data?.user?.name}</h1>
       <Post
-        id={data.id}
-        name={data.user.name}
-        avatar={data.user.image}
-        postTitle={data.title}
-        comments={data.comment}
+        id={data?.id}
+        name={data?.user?.name}
+        avatar={data?.user?.image}
+        postTitle={data?.title}
+        comments={data?.comment}
       />
-      <AddComment id={data.id} />
+      <AddComment id={data?.id} />
       <div className="w-full h-full rounded-xl ">
-        <span>Comments for post by {data.user.name}:</span>
-        {data.comment.map((comment: any) => (
+        <span>Comments for post by {data?.user?.name}:</span>
+        {data?.comment?.map((comment: any) => (
           <div
             key={comment.id}
             className="w-full h-full py-4 px-2  rounded-xl text-start bg-slate-800 text-white my-2"

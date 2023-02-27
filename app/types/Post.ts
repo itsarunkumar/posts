@@ -1,24 +1,24 @@
 export type PostType = {
-    id: string
-    title: string
-    updatedAt?: string
-    user: {
-      email: string
-      id: string
-      image: string
-      name: string
+    id:any
+    title?:any 
+    updatedAt?: any
+    user?: {
+      email?: any
+      id?: any
+      image?: any
+      name?: any
     }
-    comments: {
-      createdAt?: string
-      id: string
-      postId: string
-      title: string
-      userId: string
-      user: {
-        email: string
-        id: string
-        image: string
-        name: string
+    comment?: {
+      createdAt?:any 
+      id?: any
+      postId?: any
+      title?: any
+      userId: any
+      user?: {
+        email?:any 
+        id?: any
+        image?:any 
+        name: any
       }
     }[]
   }
