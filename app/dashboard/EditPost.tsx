@@ -40,7 +40,7 @@ export default function EditPost({
       },
       onSuccess: (data) => {
         console.log(data);
-        queryClient.invalidateQueries("auth-Posts");
+        queryClient.invalidateQueries(["auth-Posts"]);
         toast.success("Post has been deleted.", { id: deleteToastID });
       },
     }

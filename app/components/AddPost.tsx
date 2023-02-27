@@ -15,13 +15,13 @@ export default function AddPost() {
     {
       onSuccess: () => {
         toast.success("Post added", { id: toastId });
-        queryClient.invalidateQueries("posts");
+        queryClient.invalidateQueries(["posts"]);
         setTitle("");
         setisDisabled(false);
       },
       onError: (error) => {
         if (error instanceof AxiosError) {
-          toast.error("Error: " + error.response.data.error, { id: toastId });
+          toast.error("Error: " + error?.response?.data.error, { id: toastId });
         }
       },
     }

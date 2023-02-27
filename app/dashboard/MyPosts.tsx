@@ -24,11 +24,11 @@ export default function MyPosts() {
     return <div>Error while getting</div>;
   }
 
-  console.log(data?.Post);
+  // console.log(data?.Post);
 
   return (
     <div>
-      {data?.Post?.map((post) => (
+      {data?.Post?.map((post: any) => (
         <EditPost
           id={post.id}
           key={post.id}

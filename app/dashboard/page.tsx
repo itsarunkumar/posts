@@ -14,7 +14,7 @@ export default async function Dashboard() {
     <div>
       <h1 className="text-2xl text-center ">
         welcome back
-        <span className="text-blue-700 px-4">{session?.user.name}</span>
+        <span className="text-blue-700 px-4">{session?.user?.name}</span>
         <MyPosts />
       </h1>
     </div>
