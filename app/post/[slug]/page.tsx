@@ -12,7 +12,7 @@ const fetchDetails = async (slug: string) => {
   return data;
 };
 
-export default function PostDetails(url: URL) {
+export default function PostDetails(url: any) {
   const { data, isLoading } = useQuery<PostType>({
     queryKey: ["detail-post"],
     queryFn: () => fetchDetails(url?.params?.slug),

@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main>
       <AddPost />
-      {data.data.map((post: any) => (
+      {data?.data.map((post: any) => (
         <Post
           key={post.id}
           id={post.id}
