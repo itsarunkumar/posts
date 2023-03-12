@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Comments from "./Comments";
+import { useState } from "react";
 
 type Prop = {
   id: string;
@@ -12,7 +14,13 @@ type Prop = {
 };
 
 export default function Post({ id, name, avatar, postTitle, comments }: Prop) {
+  console.log("--------------------");
+
   console.log(comments);
+  console.log("--------------------");
+
+  const [showComment, setShowComment] = useState(false);
+
   return (
     <motion.div
       animate={{ opacity: 1, scale: 1 }}
@@ -33,17 +41,25 @@ export default function Post({ id, name, avatar, postTitle, comments }: Prop) {
       <div className="my-8 text-white ">
         <p className="break-all">{postTitle}</p>
       </div>
-      <div className="flex gap-4 cursor-pointer items-center">
+      <div className="flex gap-4 cursor-pointer flex-col justify-start items-start">
         <Link
           href={{
             pathname: `/post/${id}`,
           }}
         >
           <p className=" text-sm font-bold text-gray-700">
-            {/* {comments?.length > 1 ? comments?.length : 0} Comments */}
             {comments?.length} Comments
           </p>
         </Link>
+        <div>
+          <button
+            onClick={() => setShowComment(!showComment)}
+            className="outline-1 bg-slate-600 font-light text-sm p-2 rounded-xl "
+          >
+            Show Commets
+          </button>
+          {showComment && <Comments comment={comments} />}
+        </div>
       </div>
     </motion.div>
   );
