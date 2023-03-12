@@ -4,6 +4,7 @@ import AddPost from "./components/AddPost";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Post from "./components/Post";
+import Comments from "./components/Comments";
 
 const allPosts = async () => {
   const data = await axios.get("/api/post/getPosts");
@@ -18,7 +19,7 @@ export default function Home() {
 
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error;
-  console.log(data);
+  // console.log(data);
 
   return (
     <main>
