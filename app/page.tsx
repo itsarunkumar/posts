@@ -28,10 +28,10 @@ export default function Home() {
         <Post
           key={post.id}
           id={post.id}
-          postTitle={post.title}
-          name={post.user.name}
-          avatar={post.user.image}
-          comments={post.comment}
+          postTitle={post?.title}
+          name={post?.user?.name}
+          avatar={post?.user?.image}
+          comments={post?.comment}
         />
       ))}
     </main>

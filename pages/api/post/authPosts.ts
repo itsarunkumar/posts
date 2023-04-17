@@ -15,7 +15,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
           email: session?.user?.email,
         },
         include: {
-          Post: {
+          posts: {
             include: {
               comment: true,
             },
@@ -25,6 +25,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
           },
         },
       });
+
+      console.log(user);
       
       res.status(200).json(user);
     } catch (error) {

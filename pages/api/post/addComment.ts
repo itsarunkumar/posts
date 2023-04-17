@@ -12,10 +12,12 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     const postId = req.body.data
     console.log(postId)
 
-    const prismaUser = await prisma.user.findUnique({
+    const prismaUser = await prisma.User.findUnique({
         where:{
             email: session?.user?.email
         }})
+
+      console.log(prismaUser)
 
     try {
         const {title , postId} = req.body.data

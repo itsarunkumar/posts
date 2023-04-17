@@ -8,7 +8,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
         // console.log(req.query);
         const {details} = req.query;
-        const data = await prisma.post.findUnique({
+        const data = await prisma.Post.findUnique({
           where: {
             id: details,
           },
