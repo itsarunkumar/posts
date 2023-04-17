@@ -17,7 +17,9 @@ export default function MyPosts() {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="flex flex-col items-center justify-center h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+    </div>
   }
 
   if (error) {
@@ -28,7 +30,7 @@ export default function MyPosts() {
 
   return (
     <div>
-      {data?.Post?.map((post: any) => (
+      {data?.posts?.map((post: any) => (
         <EditPost
           id={post.id}
           key={post.id}
@@ -38,6 +40,7 @@ export default function MyPosts() {
           comments={post.comments}
         />
       ))}
+
     </div>
   );
 }
