@@ -24,14 +24,17 @@ export default function Home() {
   return (
     <main>
       <AddPost />
+
       {data?.data.map((post: any) => (
         <Post
           key={post.id}
           id={post.id}
           postTitle={post?.title}
+          postContent={post?.content}
           name={post?.user?.name}
           avatar={post?.user?.image}
           comments={post?.comment}
+          date={post?.updatedAt}
         />
       ))}
     </main>

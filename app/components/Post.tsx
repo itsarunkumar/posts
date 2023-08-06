@@ -5,62 +5,67 @@ import { motion } from "framer-motion";
 import Comments from "./Comments";
 import { useState } from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { formatDate } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import { ExternalLink } from "lucide-react";
+
 type Prop = {
   id: string;
   name: string;
   avatar: string;
   postTitle: string;
   comments: any;
+  postContent: any;
+  date: any;
 };
 
-export default function Post({ id, name, avatar, postTitle, comments }: Prop) {
-  console.log("--------------------");
-
-  console.log(comments);
-  console.log("--------------------");
-
-  const [showComment, setShowComment] = useState(false);
+export default function Post({
+  id,
+  name,
+  avatar,
+  postTitle,
+  comments,
+  postContent,
+  date,
+}: Prop) {
+  const shortComment = comments.slice(0, 2);
 
   return (
-    <motion.div
-      animate={{ opacity: 1, scale: 1 }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      transition={{ ease: "easeOut" }}
-      className="bg-slate-800 my-8 p-8 rounded-lg "
-    >
-      <div className="flex items-center gap-2">
-        <Image
-          className="rounded-full"
-          width={32}
-          height={32}
-          src={avatar}
-          alt="avatar"
-        />
-        <h3 className="font-bold text-white">{name}</h3>
+    <div className="bg-slate-800 my-8 p-8 rounded-lg w-full ">
+      <div className="flex items-center gap-2 ">
+        <Avatar>
+          <AvatarImage src={avatar} />
+          <AvatarFallback>{name}</AvatarFallback>
+        </Avatar>
+
+        <h4>{name}</h4>
       </div>
-      <div className="my-8 text-white ">
-        <p className="break-all">{postTitle}</p>
-      </div>
-      <div className="flex gap-4 cursor-pointer flex-col justify-start items-start">
-        <Link
-          href={{
-            pathname: `/post/${id}`,
-          }}
-        >
-          <p className=" text-sm font-bold text-gray-700">
-            {comments?.length} Comments
-          </p>
-        </Link>
-        <div>
-          <button
-            onClick={() => setShowComment(!showComment)}
-            className="outline-1 bg-slate-600 font-light text-sm p-2 rounded-xl "
+
+      <div className="w-full my-6 text-white flex  justify-start flex-col">
+        <span className="font-bold text-2xl text-pink-400 my-4 flex justify-start hover:underline">
+          <Link
+            href={{
+              pathname: `/post/${id}`,
+            }}
           >
-            Show Commets
-          </button>
-          {showComment && <Comments comment={comments} />}
-        </div>
+            {postTitle}
+          </Link>
+          <ExternalLink className="w-3 h-3" />
+        </span>
+
+        <Separator className="my-4" />
+
+        <p className="break-all w-full overflow-hidden  text-ellipsis">
+          {postContent}
+        </p>
+
+        <span className="text-sm text-gray-400 text-end">
+          {formatDate(date)}
+        </span>
       </div>
-    </motion.div>
+
+      <Comments comment={shortComment} />
+    </div>
   );
 }
