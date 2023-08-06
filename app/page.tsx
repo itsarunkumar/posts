@@ -3,7 +3,7 @@
 import AddPost from "./components/AddPost";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Post, { PostNew } from "./components/Post";
+import { PostNew } from "./components/Post";
 import Comments from "./components/Comments";
 
 const allPosts = async () => {

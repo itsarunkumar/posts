@@ -27,7 +27,11 @@ export default function AddPost() {
   let toastId: string | undefined;
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(
+  const { mutate } = useMutation<
+    void,
+    AxiosError,
+    { title: string; content: string }
+  >(
     async (newPostdata) => {
       return axios.post("/api/post/addpost", newPostdata);
     },
@@ -41,7 +45,7 @@ export default function AddPost() {
       },
       onError: (error) => {
         if (error instanceof AxiosError) {
-          toast.error("Error: " + error?.response?.data.error, { id: toastId });
+          toast.error("Error: ", { id: toastId });
         }
       },
     }
