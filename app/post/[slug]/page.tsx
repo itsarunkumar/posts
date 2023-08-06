@@ -28,6 +28,8 @@ export default function PostDetails(url: any) {
         avatar={data?.user?.image}
         postTitle={data?.title}
         comments={data?.comment}
+        postContent={data?.content}
+        date={data?.updatedAt}
       />
       <AddComment id={data?.id} />
       <div className="w-full h-full rounded-xl ">
