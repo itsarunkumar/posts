@@ -20,7 +20,7 @@ type Prop = {
   date: any;
 };
 
-export function PostNew({
+export default function Post({
   id,
   name,
   avatar,
