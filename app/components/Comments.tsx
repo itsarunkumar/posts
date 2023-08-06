@@ -1,31 +1,35 @@
 "use client";
+import { formatDate } from "@/lib/utils";
 import Image from "next/image";
+
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { Separator } from "@/components/ui/separator";
+import { MessageSquareDashed, ChevronsRight } from "lucide-react";
 
 export default function Comments(props: { comment: any[] }) {
   return (
-    <div>
-      <div className="bg-slate-800">
-        <span className="text-neutral-100 font-bold ">Comments:</span>
-        {props.comment?.map((comment: any) => (
-          <div
-            className="flex items-center gap-2 my-2 text-sm"
-            key={comment.id}
-          >
-            <p className="flex items-center flex-row justify-start">
-              <Image
-                src={comment?.user.image}
-                width={18}
-                height={18}
-                alt={comment?.user.name}
-                className="rounded-full mr-2"
-              />
-              <span className="text-neutral-100 font-bold ">
-                {comment.content}
-              </span>
+    <div className="bg-slate-800 w-full">
+      <span className=" font-bold py-5 text-purple-600 flex gap-4  ">
+        <MessageSquareDashed /> comments:
+      </span>
+      {props.comment?.map((comment: any) => (
+        <>
+          <div className="w-full text-slate-200 flex justify-start items-start gap-4 flex-col">
+            <p className="w-full flex">
+              <ChevronsRight /> <p>{comment?.content}</p>
             </p>
+            <span className="text-end w-full flex flex-col text-[12px] text-gray-400">
+              <span>@{comment?.user.name}</span>
+              <span>{formatDate(comment?.updatedAt)}</span>
+            </span>
           </div>
-        ))}
-      </div>
+          <Separator className="my-2 h-[1px] bg-slate-700 opacity-25 " />
+        </>
+      ))}
     </div>
   );
 }

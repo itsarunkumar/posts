@@ -3,7 +3,7 @@
 import AddPost from "./components/AddPost";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Post from "./components/Post";
+import Post, { PostNew } from "./components/Post";
 import Comments from "./components/Comments";
 
 const allPosts = async () => {
@@ -24,14 +24,17 @@ export default function Home() {
   return (
     <main>
       <AddPost />
+
       {data?.data.map((post: any) => (
-        <Post
+        <PostNew
           key={post.id}
           id={post.id}
           postTitle={post?.title}
+          postContent={post?.content}
           name={post?.user?.name}
           avatar={post?.user?.image}
           comments={post?.comment}
+          date={post?.updatedAt}
         />
       ))}
     </main>

@@ -26,8 +26,9 @@ export default async function handler(
 
     type Post = {
       title: string;
+      content: string;
     };
-    const { title }: Post = req.body;
+    const { title, content }: Post = req.body;
 
     // if (title.length > 300) {
     //   return res.status(400).json({ error: "Title is too long" });
@@ -41,6 +42,7 @@ export default async function handler(
         data: {
           title: title,
           userId: prismUser.id,
+          content: content,
         },
       });
       console.log(post);
