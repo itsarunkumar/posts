@@ -107,7 +107,7 @@ export default function AddPost() {
           />
           <div className={"flex justify-between items-center mt-6 w-full"}>
             <p className="flex gap-3">
-              <PencilLine /> <span>{title.length} characters</span>
+              <PencilLine /> <span>{content.length} characters</span>
             </p>
 
             <SheetClose asChild>

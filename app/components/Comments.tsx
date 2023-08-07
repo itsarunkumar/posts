@@ -30,6 +30,14 @@ export default function Comments(props: { comment: any[] }) {
           <Separator className="my-2 h-[1px] bg-slate-700 opacity-25 " />
         </>
       ))}
+
+      {props.comment?.length === 0 && (
+        <div className="w-full text-slate-200 flex justify-start items-start gap-4 flex-col">
+          <p className="w-full flex">
+            <ChevronsRight /> <p>No comments yet</p>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
